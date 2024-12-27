@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte de Visite Numérique</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 350px;
+            padding: 20px;
+            text-align: center;
+            position: relative; /* Nécessaire pour positionner le logo */
+        }
+        .logo-container {
+            position: absolute; /* Permet de placer le logo en haut à gauche */
+            top: 10px; /* Ajuste la distance par rapport au haut de la carte */
+            left: 10px; /* Ajuste la distance par rapport au bord gauche */
+        }
+        .logo {
+            width: 60px; /* Taille ajustée pour s'assurer qu'il reste bien visible */
+            height: auto; /* Conserve les proportions du logo */
+        }
+        .card img.profile-pic {
+            width: 100px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .card h2 {
+            font-size: 1.5em;
+            color: #333;
+        }
+        .card p {
+            font-size: 1em;
+            color: #666;
+            margin: 10px 0;
+        }
+        .card a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .card a:hover {
+            text-decoration: underline;
+        }
+        .company-info {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- Logo de l'entreprise -->
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo de l'entreprise" class="logo">
+        </div>
+
+        <!-- Photo de profil -->
+        <img src="IMG_20241225_203224.jpg" alt="Photo de profil" class="profile-pic">
+
+        <!-- Informations personnelles -->
+        <h2>Silvert Stéphane</h2>
+        <p>Product Manager - Responsable Pôle Équipements Fixes SFR</p>
+        
+        <!-- Contact -->
+        <p>Téléphone : <a href="tel:+33626822503">+33 6 26 82 25 03</a></p>
+        <p>Email : <a href="mailto:stephane.silvert@sfr.com">stephane.silvert@sfr.com</a></p>
+        <p><a href="https://linkedin.com/in/nomprenom" target="_blank">LinkedIn</a></p>
+
+        <!-- Informations sur l'entreprise -->
+        <div class="company-info">
+            <p><strong>SFR</strong></p>
+            <p>Adresse : Campus Altice, 16 Rue du Général Alain de Boissieu, 75015 Paris, France</p>
+        </div>
+    </div>
+</body>
+</html>
+
