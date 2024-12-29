@@ -22,16 +22,16 @@
             max-width: 350px;
             padding: 20px;
             text-align: center;
-            position: relative; /* Nécessaire pour positionner le logo */
+            position: relative;
         }
         .logo-container {
-            position: absolute; /* Permet de placer le logo en haut à gauche */
-            top: 10px; /* Ajuste la distance par rapport au haut de la carte */
-            left: 10px; /* Ajuste la distance par rapport au bord gauche */
+            position: absolute;
+            top: 10px;
+            left: 10px;
         }
         .logo {
-            width: 60px; /* Taille ajustée pour s'assurer qu'il reste bien visible */
-            height: auto; /* Conserve les proportions du logo */
+            width: 60px;
+            height: auto;
         }
         .card img.profile-pic {
             width: 100px;
@@ -59,30 +59,81 @@
             margin-top: 20px;
             font-size: 0.9em;
         }
+        .add-contact-btn {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 1em;
+        }
+        .add-contact-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <div class="card">
-        <!-- Logo de l'entreprise -->
         <div class="logo-container">
             <img src="1735323812547.jpg" alt="Logo de l'entreprise" class="logo">
         </div>
-        <!-- Photo de profil -->
         <img src="aoTe6OB0.jpeg" alt="Photo de profil" class="profile-pic">
-        <!-- Informations personnelles -->
         <h2>Yann Le Bihan</h2>
         <p>Product Manager - Maison connectée SFR</p>
-        <!-- Contact -->
         <p>Téléphone : <a href="tel:+33628098887">+33 6 28 09 88 87</a></p>
         <p>Email : <a href="mailto:yann.lebihan@sfr.com">yann.lebihan@sfr.com</a></p>
         <p><a href="https://linkedin.com/in/lebihanyann" target="_blank">LinkedIn</a></p>
-
-        <!-- Informations sur l'entreprise -->
         <div class="company-info">
             <p><strong>SFR</strong></p>
             <p>Adresse : Campus Altice, 16 Rue du Général Alain de Boissieu, 75015 Paris, France</p>
         </div>
+        <button class="add-contact-btn" onclick="addToContacts()">Ajouter aux contacts</button>
     </div>
+
+    <script>
+    function addToContacts() {
+        const contact = {
+            name: "Yann Le Bihan",
+            tel: "+33628098887",
+            email: "yann.lebihan@sfr.com"
+        };
+
+        if ('contacts' in navigator && 'ContactsManager' in window) {
+            const props = ['name', 'tel', 'email'];
+            navigator.contacts.select(props, {multiple: false})
+            .then((contacts) => {
+                contacts[0].name = [contact.name];
+                contacts[0].tel = [contact.tel];
+                contacts[0].email = [contact.email];
+                return contacts[0].getProperties(props);
+            })
+            .then((properties) => {
+                alert("Contact ajouté avec succès !");
+            })
+            .catch((err) => {
+                console.error(err);
+                alert("Erreur lors de l'ajout du contact.");
+            });
+        } else {
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:${contact.name}
+TEL:${contact.tel}
+EMAIL:${contact.email}
+END:VCARD`;
+            const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = "contact.vcf";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    }
+    </script>
 </body>
 </html>
 
