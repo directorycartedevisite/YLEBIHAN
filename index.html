@@ -5,12 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carte de Visite Numérique</title>
     <style>
-        /* Styles CSS inchangés */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 350px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        .logo-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .logo {
+            width: 60px;
+            height: auto;
+        }
+        .card img.profile-pic {
+            width: 100px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .card h2 {
+            font-size: 1.5em;
+            color: #333;
+        }
+        .card p {
+            font-size: 1em;
+            color: #666;
+            margin: 10px 0;
+        }
+        .card a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .card a:hover {
+            text-decoration: underline;
+        }
+        .company-info {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        .add-contact-btn {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 1em;
+        }
+        .add-contact-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <div class="card">
-        <!-- Contenu de la carte inchangé -->
+        <div class="logo-container">
+            <img src="1735323812547.jpg" alt="Logo de l'entreprise" class="logo">
+        </div>
+        <img src="aoTe6OB0.jpeg" alt="Photo de profil" class="profile-pic">
+        <h2>Yann Le Bihan</h2>
+        <p>Product Manager - Maison connectée SFR</p>
+        <p>Téléphone : <a href="tel:+33628098887">+33 6 28 09 88 87</a></p>
+        <p>Email : <a href="mailto:yann.lebihan@sfr.com">yann.lebihan@sfr.com</a></p>
+        <p><a href="https://linkedin.com/in/lebihanyann" target="_blank">LinkedIn</a></p>
+        <div class="company-info">
+            <p><strong>SFR</strong></p>
+            <p>Adresse : Campus Altice, 16 Rue du Général Alain de Boissieu, 75015 Paris, France</p>
+        </div>
         <button class="add-contact-btn" onclick="addToContacts()">Ajouter aux contacts</button>
     </div>
 
