@@ -116,7 +116,6 @@
             email: "yann.lebihan@sfr.com"
         };
 
-        // Vérifier si le navigateur prend en charge l'API Contacts
         if ('contacts' in navigator && 'ContactsManager' in window) {
             const props = ['name', 'tel', 'email'];
             navigator.contacts.select(props, {multiple: false})
@@ -159,10 +158,8 @@ END:VCARD`;
         const url = URL.createObjectURL(blob);
         
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            // Pour les appareils mobiles
             window.location.href = url;
         } else {
-            // Pour les ordinateurs de bureau
             const link = document.createElement('a');
             link.href = url;
             link.download = "contact.vcf";
@@ -188,7 +185,6 @@ END:VCARD`;
                 .then(() => console.log('Partage réussi'))
                 .catch((error) => console.log('Erreur lors du partage', error));
         } else {
-            // Fallback pour les navigateurs qui ne supportent pas l'API Web Share
             alert('Le partage n\'est pas pris en charge par votre navigateur. Vous pouvez copier l\'URL et la partager manuellement.');
         }
     }
