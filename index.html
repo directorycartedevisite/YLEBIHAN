@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carte de Visite Numérique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,17 +60,25 @@
             margin-top: 20px;
             font-size: 0.9em;
         }
-        .add-contact-btn {
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .action-btn {
             background-color: #007BFF;
             color: white;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 15px;
             font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
-        .add-contact-btn:hover {
+        .action-btn:hover {
             background-color: #0056b3;
         }
     </style>
@@ -89,7 +98,14 @@
             <p><strong>SFR</strong></p>
             <p>Adresse : Campus Altice, 16 Rue du Général Alain de Boissieu, 75015 Paris, France</p>
         </div>
-        <button class="add-contact-btn" onclick="addToContacts()">Ajouter aux contacts</button>
+        <div class="action-buttons">
+            <button class="action-btn" onclick="addToContacts()">
+                <i class="fas fa-user-plus"></i> Ajouter aux contacts
+            </button>
+            <button class="action-btn" onclick="shareContact()">
+                <i class="fas fa-share-alt"></i> Partager
+            </button>
+        </div>
     </div>
 
     <script>
@@ -158,6 +174,23 @@ END:VCARD`;
         setTimeout(() => {
             URL.revokeObjectURL(url);
         }, 100);
+    }
+
+    function shareContact() {
+        const contactInfo = {
+            title: 'Contact de Yann Le Bihan',
+            text: 'Yann Le Bihan\nProduct Manager - Maison connectée SFR\nTél: +33 6 28 09 88 87\nEmail: yann.lebihan@sfr.com',
+            url: window.location.href
+        };
+
+        if (navigator.share) {
+            navigator.share(contactInfo)
+                .then(() => console.log('Partage réussi'))
+                .catch((error) => console.log('Erreur lors du partage', error));
+        } else {
+            // Fallback pour les navigateurs qui ne supportent pas l'API Web Share
+            alert('Le partage n\'est pas pris en charge par votre navigateur. Vous pouvez copier l\'URL et la partager manuellement.');
+        }
     }
     </script>
 </body>
